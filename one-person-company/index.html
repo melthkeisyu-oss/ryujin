@@ -1,0 +1,249 @@
+<title>Claudeで1人会社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@500;700;900&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --navy-0: #04123f;
+    --navy-1: #0a2a86;
+    --navy-2: #1340c4;
+    --yellow: #ffe433;
+    --yellow-deep: #f5c400;
+    --cyan: #3ad8ff;
+    --paper: #ffffff;
+    --row: #f6f8fd;
+    --line: #dfe5f3;
+    --ink: #10183a;
+    --ink-soft: #3a4466;
+    --claude: #d97757;
+    --blue: #1f5ce0;
+    --green: #1fae4b;
+    --pink: #e8397a;
+    --teal: #0fb3c9;
+    --purple: #6c3fd6;
+    --orange: #f2a20c;
+    --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+    --display: "Dela Gothic One", "Noto Sans JP", "Hiragino Sans", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: radial-gradient(120% 60% at 50% 0%, var(--navy-2) 0%, var(--navy-1) 40%, var(--navy-0) 100%) fixed, var(--navy-0);
+    color: var(--ink);
+    font-family: var(--sans);
+    padding-inline: 16px;
+    padding-block: 24px 40px;
+  }
+  .poster {
+    max-width: 760px;
+    margin: 0 auto;
+    display: grid;
+    gap: 18px;
+  }
+
+  /* ---------- header ---------- */
+  header { position: relative; display: grid; gap: 6px; color: #fff; }
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .kicker {
+    font-family: var(--display);
+    font-size: clamp(22px, 5.6vw, 40px);
+    line-height: 1.1;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .kicker .brand { color: var(--cyan); letter-spacing: -0.01em; }
+  .kicker svg { width: 1.1em; height: 1.1em; }
+  .badge {
+    background: linear-gradient(180deg, #fff27a, var(--yellow-deep));
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: clamp(18px, 4.6vw, 32px);
+    padding: 4px 14px 4px 16px;
+    border-radius: 8px;
+    transform: skew(-6deg);
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 3px 0 #b88f00;
+  }
+  .badge i {
+    width: 0.7em; height: 0.9em; background: var(--ink);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%);
+  }
+  .headline { display: flex; align-items: flex-end; gap: 10px; flex-wrap: wrap; }
+  .headline h1 {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(64px, 17vw, 140px);
+    line-height: 0.95;
+    color: var(--yellow);
+    text-shadow: 0 5px 0 #b88f00, 0 10px 24px rgba(0,0,0,.45);
+    letter-spacing: -0.02em;
+  }
+  .headline p {
+    margin: 0 0 8px;
+    font-family: var(--display);
+    font-size: clamp(26px, 6.6vw, 54px);
+    line-height: 1.05;
+  }
+  .sub {
+    margin: 6px 0 0;
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 900;
+    font-size: clamp(15px, 3.9vw, 28px);
+    text-wrap: balance;
+  }
+  .sub span { text-wrap: pretty; }
+  .sub b { color: var(--yellow); font-weight: 900; }
+  .sub svg { flex: none; width: 1.6em; height: 1.6em; }
+
+  /* ---------- table ---------- */
+  .board {
+    background: var(--paper);
+    border-radius: 18px;
+    padding: 12px 10px 10px;
+    box-shadow: 0 16px 40px rgba(0,0,0,.35);
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.1fr;
+    gap: 6px;
+  }
+  .th {
+    background: linear-gradient(180deg, #1b4fd8, #0a2a86);
+    color: #fff;
+    font-weight: 900;
+    text-align: center;
+    border-radius: 999px;
+    padding: 7px 4px;
+    font-size: clamp(13px, 3.4vw, 22px);
+    letter-spacing: 0.04em;
+  }
+  ol { list-style: none; margin: 8px 0 0; padding: 0; display: grid; }
+  li {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.1fr;
+    align-items: center;
+    border-top: 1px solid var(--line);
+    padding-block: 9px;
+  }
+  li:nth-child(odd) { background: var(--row); }
+  li > div { padding-inline: 6px; }
+  li > div + div { border-left: 1px solid var(--line); }
+
+  .who { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 6px; }
+  .pic { position: relative; padding: 10px 0 0 10px; }
+  .num {
+    width: 1.6em; height: 1.6em; border-radius: 50%;
+    background: var(--blue); color: #fff;
+    display: grid; place-items: center;
+    font-weight: 900; font-size: clamp(10px, 2.6vw, 17px);
+    font-variant-numeric: tabular-nums;
+    position: absolute; top: 0; left: 0;
+    box-shadow: 0 0 0 2px var(--paper);
+  }
+  .ico { display: block; width: clamp(26px, 7vw, 50px); height: clamp(26px, 7vw, 50px); }
+  .role { display: grid; gap: 1px; min-width: 0; }
+  .role strong { white-space: nowrap; font-weight: 900; font-size: clamp(12px, 3.3vw, 27px); line-height: 1.15; letter-spacing: -0.02em; }
+  .role small { white-space: nowrap; font-weight: 700; font-size: clamp(9px, 2.3vw, 15px); color: var(--ink-soft); }
+
+  .jobs { font-weight: 700; font-size: clamp(10px, 2.6vw, 16px); line-height: 1.55; color: var(--ink); }
+
+  .tool { display: grid; gap: 6px; }
+  .tool-name {
+    display: flex; align-items: center; gap: 5px; flex-wrap: wrap;
+    font-weight: 700; font-size: clamp(12px, 3.2vw, 22px);
+    color: var(--claude);
+  }
+  .tool-name .x { color: var(--ink); font-weight: 500; }
+  .claude-mark { width: 1.45em; height: 1.45em; flex: none; }
+  .partner { color: var(--ink); display: inline-flex; align-items: center; gap: 3px; }
+  .partner.canva { color: #19a3d1; font-style: italic; font-family: Georgia, serif; font-size: 1.12em; }
+  .partner.zapier { color: #ff4f00; font-weight: 900; }
+  .partner.excel { color: #107c41; }
+  .dot { width: 1.05em; height: 1.05em; border-radius: 50%; background: #1b1b1b; display: inline-block; }
+  .xl { width: 1.05em; height: 1.05em; border-radius: 3px; background: #107c41; color: #fff; font-size: .7em; display: inline-grid; place-items: center; font-weight: 900; }
+  .pill {
+    color: #fff; font-weight: 900; text-align: center;
+    border-radius: 999px; padding: 4px 8px;
+    font-size: clamp(9px, 2.4vw, 16px);
+    background: var(--c, var(--blue));
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,.18);
+  }
+
+  footer { color: rgba(255,255,255,.7); font-size: 12px; text-align: center; }
+</style>
+
+<main class="poster">
+  <header>
+    <div class="top">
+      <div class="kicker"><span class="brand">Claude</span>で今話題の
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M40 6c10 0 18 8 18 18L36 46 18 28Z" fill="#e9eef8"/><circle cx="42" cy="22" r="6" fill="#2a7de1"/><path d="M18 28l-10 2 8-12 10 0Zm18 18-2 10 12-8 0-10Z" fill="#e8397a"/><path d="M14 44c-6 4-8 14-8 14s10-2 14-8Z" fill="#ffb020"/></svg>
+      </div>
+      <div class="badge">保存版<i></i></div>
+    </div>
+    <div class="headline">
+      <h1>1人会社</h1>
+      <p>を<br>作る方法</p>
+    </div>
+    <p class="sub">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="#fff" stroke-width="3"/><circle cx="20" cy="15" r="6" fill="none" stroke="#fff" stroke-width="3"/><path d="M9 31c2-6 6-8 11-8s9 2 11 8" fill="none" stroke="#fff" stroke-width="3"/></svg>
+      <span><b>AI社員10人</b>を雇えば、社員0人でも会社は回る。</span>
+    </p>
+  </header>
+
+  <section class="board" aria-label="AI社員の一覧">
+    <div class="cols">
+      <div class="th">AI社員</div>
+      <div class="th">主な仕事</div>
+      <div class="th">使うAI／効果</div>
+    </div>
+    <ol id="rows"></ol>
+  </section>
+
+  <footer>AI社員10人で回す、ひとり会社の組織図</footer>
+</main>
+
+<script>
+  const claude = '<svg class="claude-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="9" fill="#d97757"/><g stroke="#fff" stroke-width="3.2" stroke-linecap="round"><path d="M20 8v24M8 20h24M11.5 11.5l17 17M28.5 11.5l-17 17"/></g><circle cx="20" cy="20" r="3" fill="#d97757"/></svg>';
+  const partners = {
+    perplexity: '<span class="partner"><span class="dot"></span>Perplexity</span>',
+    canva: '<span class="partner canva">Canva</span>',
+    zapier: '<span class="partner zapier">Zapier</span>',
+    excel: '<span class="partner excel"><span class="xl">X</span>Excel</span>'
+  };
+  const icon = {
+    ceo: '<path d="M25 6a8 8 0 1 1 0 16a8 8 0 0 1 0-16Z" fill="#1f5ce0"/><path d="M8 46c0-12 7-20 17-20s17 8 17 20Z" fill="#1f5ce0"/><path d="M22 26h6l-1 4 2 12-4 4-4-4 2-12Z" fill="#fff"/>',
+    sec: '<rect x="9" y="8" width="32" height="38" rx="4" fill="none" stroke="#6c3fd6" stroke-width="3.5"/><rect x="18" y="4" width="14" height="8" rx="2" fill="#6c3fd6"/><path d="M15 21l3 3 5-6M15 31l3 3 5-6M15 41l3 3" stroke="#6c3fd6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M28 22h8M28 32h8" stroke="#6c3fd6" stroke-width="3" stroke-linecap="round"/>',
+    writer: '<path d="M10 40l4-12 22-22 8 8-22 22Z" fill="#1fae4b"/><path d="M10 40l4-12 8 8Z" fill="#f2c94c"/><path d="M6 46h38" stroke="#1fae4b" stroke-width="4" stroke-linecap="round"/>',
+    mkt: '<path d="M6 24 25 8l19 16" stroke="#1f5ce0" stroke-width="3.5" fill="none" stroke-linejoin="round"/><rect x="10" y="32" width="5" height="12" fill="#1f5ce0"/><rect x="18" y="26" width="5" height="18" fill="#1f5ce0"/><circle cx="32" cy="32" r="8" fill="none" stroke="#1f5ce0" stroke-width="3.5"/><path d="M38 38l7 7" stroke="#1f5ce0" stroke-width="4" stroke-linecap="round"/>',
+    design: '<rect x="5" y="8" width="40" height="34" rx="5" fill="#e8397a"/><circle cx="16" cy="19" r="4" fill="#fff"/><path d="M9 38l12-12 7 7 6-6 8 11Z" fill="#fff"/>',
+    research: '<circle cx="21" cy="21" r="13" fill="none" stroke="#0fb3c9" stroke-width="5"/><path d="M31 31l12 12" stroke="#0fb3c9" stroke-width="6" stroke-linecap="round"/>',
+    dev: '<rect x="4" y="6" width="42" height="38" rx="8" fill="#1f5ce0"/><path d="M18 18l-7 7 7 7M32 18l7 7-7 7M27 15l-4 20" stroke="#fff" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+    office: '<path d="M6 20 25 6l19 14v24H6Z" fill="none" stroke="#9b2fc4" stroke-width="3.5" stroke-linejoin="round"/><rect x="12" y="22" width="26" height="16" rx="2" fill="#9b2fc4"/><path d="M12 23l13 9 13-9" stroke="#fff" stroke-width="2.5" fill="none"/>',
+    sales: '<path d="M4 22l10-8 11 6 11-6 10 8-8 10-5-2-8 8-8-6-6 2Z" fill="#f2851c"/><path d="M18 28l6 6M22 25l6 6M26 23l5 5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>',
+    analyst: '<path d="M25 25V5a20 20 0 0 1 20 20Z" fill="#1fae4b"/><path d="M25 25h20A20 20 0 1 1 22 5.2Z" fill="#8ed46a"/>'
+  };
+  const rows = [
+    ['ceo','AI社長','経営コンサルタント','経営戦略・新事業・アイデア出し・壁打ち・意思決定サポート','Claude Projects',null,'経営の質を劇的に向上！','--blue'],
+    ['sec','AI秘書','プロジェクト管理','案件管理・議事録作成・タスク管理・情報整理・ルール管理・リマインド','Claude Projects',null,'仕事が抜け漏れゼロ！','--purple'],
+    ['writer','AIライター','コンテンツ作成','ブログ・SNS投稿・営業メール・企画書・LP・プレスリリース','Claude',null,'高品質な文章を大量生成！','--green'],
+    ['mkt','AIマーケター','マーケティング戦略','市場分析・競合分析・販売戦略立案・広告・集客施策の提案','Claude','perplexity','売上アップの戦略を設計！','--blue'],
+    ['design','AIデザイナー','デザイン制作','画像作成・サムネイル・バナー・SNS画像制作・資料・図解デザイン','Claude','canva','見た目のインパクトを最大化！','--pink'],
+    ['research','AIリサーチャー','情報収集のプロ','情報収集・論文検索・業界トレンド調査・データ整理','Claude','perplexity','正確で深い情報を素早く！','--teal'],
+    ['dev','AIプログラマー','開発エンジニア','コード生成・修正・アプリ開発・機能実装・バグ解決・テスト支援','Claude Code',null,'開発を高速・高品質に！','--blue'],
+    ['office','AI事務','バックオフィス担当','メール返信・データ整理・請求書・書類作成・スケジュール・経費管理','Claude','zapier','バックオフィス業務を自動化！','--purple'],
+    ['sales','AI営業','営業アシスタント','営業資料・提案書作成・見込み客リスト作成・フォローアップ管理','Claude',null,'営業効率を上げ、新規を増加！','--orange'],
+    ['analyst','AI分析官','データアナリスト','売上分析・KPI管理・データ可視化・レポート・改善提案・予測分析','Claude','excel','データで意思決定を加速！','--green']
+  ];
+  document.getElementById('rows').innerHTML = rows.map(([ic, role, sub, jobs, tool, partner, effect, color], i) => `
+    <li>
+      <div class="who">
+        <div class="pic"><span class="num">${i + 1}</span><svg class="ico" viewBox="0 0 50 50" aria-hidden="true">${icon[ic]}</svg></div>
+        <div class="role"><strong>${role}</strong><small>${sub}</small></div>
+      </div>
+      <div class="jobs">${jobs}</div>
+      <div class="tool">
+        <div class="tool-name">${claude}<span>${tool}</span>${partner ? '<span class="x">×</span>' + partners[partner] : ''}</div>
+        <div class="pill" style="--c: var(${color})">${effect}</div>
+      </div>
+    </li>`).join('');
+</script>
