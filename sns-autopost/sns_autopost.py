@@ -50,7 +50,7 @@ EXIT_NO_TOKEN = 2
 # 抽出
 # ---------------------------------------------------------------------------
 _GOOGLE_REDIRECT = re.compile(r"https://www\.google\.com/url\?q=([^&\s]+)[^\s]*")
-_SECTION_HEAD = re.compile(r"^【Threads投稿[^】]*】\s*$")
+_SECTION_HEAD = re.compile(r"^【?Threads投稿[^】]*】?\s*$")
 _ANY_HEAD = re.compile(r"^【[^】]+】\s*$")
 _RULE = re.compile(r"^[=＝\-－_]{5,}\s*$")
 
