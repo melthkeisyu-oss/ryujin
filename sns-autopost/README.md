@@ -5,6 +5,6 @@ Threads と Facebookページに自動投稿する仕組み。
 
 - `sns_autopost.py` … 投稿スクリプト（抽出 / 投稿 / トークン確認）
 - `SETUP.md` … トークンの取り方と環境変数の登録手順（日本語）
-- `ROUTINE_PROMPT.md` … ルーティン「SNS自動投稿」（毎朝8:52 JST）に貼り付けるプロンプト全文（作り方は SETUP.md の手順0）
+- `ROUTINE_PROMPT.md` … ルーティン「SNS自動投稿」（毎朝8:52 JST）のプロンプト（参考。ルーティン自体は設定済み）
 
 セットアップは `SETUP.md` を参照。
