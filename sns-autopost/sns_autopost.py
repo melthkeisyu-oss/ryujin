@@ -50,9 +50,14 @@ EXIT_NO_TOKEN = 2
 # 抽出
 # ---------------------------------------------------------------------------
 _GOOGLE_REDIRECT = re.compile(r"https://www\.google\.com/url\?q=([^&\s]+)[^\s]*")
-_SECTION_HEAD = re.compile(r"^【?Threads投稿[^】]*】?\s*$")
-_ANY_HEAD = re.compile(r"^【[^】]+】\s*$")
-_RULE = re.compile(r"^[=＝\-－_]{5,}\s*$")
+_RULE_CHARS = "=＝\\-－_─━"
+# 見出しの書式は日によって変わる:
+#   【Threads投稿】 / 【Threads投稿 全文】 / Threads投稿 / ==== Threads投稿 ====
+_SECTION_HEAD = re.compile(r"^[" + _RULE_CHARS + r"\s]*【?Threads投稿[^】\n" + _RULE_CHARS + r"]*】?[" + _RULE_CHARS + r"\s]*$")
+# セクションの終わり: 罫線だけの行 / 【…】見出し / ==== 見出し ==== 形式の行
+_RULE = re.compile(r"^[" + _RULE_CHARS + r"]{5,}\s*$")
+_ANY_HEAD = re.compile(r"^[" + _RULE_CHARS + r"\s]*【[^】]+】[" + _RULE_CHARS + r"\s]*$")
+_WRAPPED_HEAD = re.compile(r"^[" + _RULE_CHARS + r"]{3,}\s*\S.*?\s*[" + _RULE_CHARS + r"]{3,}\s*$")
 
 
 def unwrap_google_links(text: str) -> str:
@@ -64,8 +69,13 @@ def unwrap_google_links(text: str) -> str:
     return _GOOGLE_REDIRECT.sub(_repl, text)
 
 
+def _is_boundary(line: str) -> bool:
+    s = line.strip()
+    return bool(_RULE.match(s) or _ANY_HEAD.match(s) or _WRAPPED_HEAD.match(s))
+
+
 def extract_threads_section(body: str) -> str:
-    """下書きメール本文から【Threads投稿】セクションの本文だけを返す。無ければ空文字。"""
+    """下書きメール本文から Threads投稿 セクションの本文だけを返す。無ければ空文字。"""
     lines = body.splitlines()
     start = None
     for i, line in enumerate(lines):
@@ -74,22 +84,18 @@ def extract_threads_section(body: str) -> str:
             break
     if start is None:
         return ""
-    # 見出し直後の罫線をスキップ
+    # 見出し直後の罫線・空行をスキップ
     while start < len(lines) and (_RULE.match(lines[start].strip()) or not lines[start].strip()):
         start += 1
     out: list[str] = []
     for line in lines[start:]:
-        s = line.strip()
-        if _RULE.match(s) or _ANY_HEAD.match(s):
+        if _is_boundary(line):
             break
         out.append(line.rstrip())
     text = "\n".join(out).strip()
     return unwrap_google_links(text)
 
 
-# ---------------------------------------------------------------------------
-# API 呼び出し
-# ---------------------------------------------------------------------------
 class ApiError(RuntimeError):
     pass
 
