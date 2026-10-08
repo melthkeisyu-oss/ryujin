@@ -5,7 +5,7 @@
 | 下書きメール | 投稿先 |
 |---|---|
 | 【本日のSNS下書き】 | Threads（本人アカウント）＋ Facebookページ |
-| 【BISTARGO本日のnote+Threads下書き】 | Threads（BISTARGOアカウント・任意）＋ Facebookページ |
+| 【BISTARGO本日のnote+Threads下書き】 | Threads（BISTARGOアカウント）＋ Facebookページ ※商品訴求の短文に書き直してから投稿（2026-10-08〜） |
 
 note には公式APIが無いため、note記事は今まで通り手動投稿です。
 
