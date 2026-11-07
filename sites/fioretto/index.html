@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>生活介護事業所 FIORETTO</title>
+<meta name="description" content="埼玉県春日部市の生活介護事業所 FIORETTO（フィオレット）。有限会社キープが運営。日中の活動と介護を通して、その人らしい一日をつくります。見学・体験随時受付中。">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* 落ち着いた紺（ロゴ色）× 淡いブルーグレー。縦に読む1枚のLP、各セクションは見出し＋短い本文＋具体の3点 */
+    --navy:#1d3a66;
+    --navy-deep:#132a4d;
+    --mist:#eef2f7;
+    --paper:#ffffff;
+    --ink:#2a2f38;
+    --muted:#6b7380;
+    --line:#d7dee8;
+    --leaf:#6fa84f;
+    --display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+    --body:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    color-scheme: light;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.9;font-size:16px}
+  img{max-width:100%;display:block}
+  a{color:var(--navy)}
+  h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.4;text-wrap:balance;margin:0}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+  /* header */
+  .hdr{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+  .brand img{height:40px}
+  .brand small{font-size:12px;color:var(--muted);letter-spacing:.08em}
+  .nav{display:flex;gap:22px;font-size:14px}
+  .nav a{text-decoration:none;color:var(--ink)}
+  .nav a:hover{color:var(--navy)}
+  .tel-btn{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;text-decoration:none;padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px}
+  @media (max-width:760px){.nav{display:none}}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--mist) 0%,#fff 100%)}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:64px 20px 56px}
+  .eyebrow{display:inline-block;font-size:13px;letter-spacing:.18em;color:var(--navy);border:1px solid var(--navy);padding:4px 12px;border-radius:999px;margin-bottom:18px}
+  .hero h1{font-size:clamp(28px,4.2vw,42px);color:var(--navy-deep)}
+  .hero p.lead{font-size:16px;margin:18px 0 26px;max-width:34em}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-block;padding:14px 26px;border-radius:999px;text-decoration:none;font-weight:700;font-size:15px}
+  .btn-primary{background:var(--navy);color:#fff}
+  .btn-ghost{border:2px solid var(--navy);color:var(--navy);background:#fff}
+  .hero-visual{border-radius:18px;background:#fff;border:1px solid var(--line);padding:36px;display:flex;flex-direction:column;align-items:center;gap:14px;box-shadow:0 20px 50px rgba(29,58,102,.08)}
+  .hero-visual img{width:min(320px,80%)}
+  .hero-visual.photo{padding:0;overflow:hidden}
+  .hero-visual.photo img{width:100%;aspect-ratio:4/3;object-fit:cover}
+  .hero-visual.photo p{padding:12px 16px 14px}
+  .about-photo{margin:0 0 28px;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+  .about-photo img{width:100%;max-height:420px;object-fit:cover}
+  .hero-visual p{margin:0;color:var(--muted);font-size:13px;text-align:center}
+  @media (max-width:760px){.hero .wrap{grid-template-columns:1fr;padding:40px 20px}}
+
+  /* quick facts */
+  .facts{margin-top:-20px}
+  .facts ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .facts li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .facts b{display:block;font-size:12px;color:var(--muted);letter-spacing:.08em;margin-bottom:4px}
+  .facts span{font-weight:700;color:var(--navy-deep)}
+  @media (max-width:760px){.facts ul{grid-template-columns:1fr 1fr}}
+
+  section{padding:72px 0}
+  section.alt{background:var(--mist)}
+  .sec-head{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;margin-bottom:32px}
+  .sec-head .num{font-family:var(--display);color:var(--navy);font-size:14px;letter-spacing:.2em}
+  .sec-head h2{font-size:clamp(22px,3vw,30px);color:var(--navy-deep)}
+  .sec-head p{grid-column:2;margin:6px 0 0;color:var(--muted);max-width:40em}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 24px}
+  .card h3{font-size:18px;color:var(--navy-deep);margin-bottom:10px}
+  .card p{margin:0;font-size:15px}
+  .card .icon{width:44px;height:44px;border-radius:12px;background:var(--mist);display:grid;place-items:center;margin-bottom:16px;color:var(--navy)}
+  @media (max-width:760px){.cards{grid-template-columns:1fr}}
+
+  /* day */
+  .day{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .timeline{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+  .timeline li{position:relative;padding:0 0 22px 24px}
+  .timeline li::before{content:"";position:absolute;left:-7px;top:10px;width:12px;height:12px;border-radius:50%;background:var(--navy);border:2px solid #fff}
+  .timeline time{font-family:var(--display);font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums;display:block;font-size:15px}
+  .timeline p{margin:2px 0 0;font-size:15px}
+  .note{background:#fff;border:1px dashed var(--navy);border-radius:12px;padding:20px 22px;font-size:14px}
+  .note b{color:var(--navy)}
+  @media (max-width:760px){.day{grid-template-columns:1fr}}
+
+  /* flow */
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;counter-reset:step}
+  .flow div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 20px;position:relative}
+  .flow div::before{counter-increment:step;content:"0" counter(step);font-family:var(--display);color:var(--navy);font-size:22px;display:block;margin-bottom:6px}
+  .flow h3{font-size:16px;margin-bottom:6px}
+  .flow p{margin:0;font-size:14px;color:var(--muted)}
+  @media (max-width:760px){.flow{grid-template-columns:1fr 1fr}}
+
+  /* info table */
+  .info{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th,td{text-align:left;padding:12px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{width:34%;color:var(--muted);font-weight:500}
+  .map{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:var(--mist)}
+  .map-link{position:absolute;right:10px;bottom:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;text-decoration:none}
+  @media (max-width:760px){.info{grid-template-columns:1fr}}
+
+  /* contact */
+  .contact{background:var(--navy-deep);color:#fff;text-align:center}
+  .contact h2{color:#fff;font-size:clamp(22px,3vw,30px)}
+  .contact p{max-width:36em;margin:14px auto 26px;color:#d7dee8}
+  .contact .tel{font-family:var(--display);font-size:clamp(28px,5vw,40px);color:#fff;text-decoration:none;display:block;margin-bottom:6px;letter-spacing:.04em}
+  .contact small{color:#b9c4d6;display:block;margin-bottom:24px}
+  .contact .btn-ghost{border-color:#fff;color:#fff;background:transparent}
+
+  footer{padding:28px 0;font-size:13px;color:var(--muted)}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+  .pending{color:#b45309;font-size:12px;border:1px solid #f1c27d;background:#fff7e8;padding:2px 8px;border-radius:6px;margin-left:6px;white-space:nowrap}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  :focus-visible{outline:3px solid var(--leaf);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="fioretto.jpg" alt="FIORETTO"><small>生活介護事業所｜春日部市</small></a>
+    <nav class="nav">
+      <a href="#about">FIORETTOについて</a>
+      <a href="#service">活動内容</a>
+      <a href="#day">一日の流れ</a>
+      <a href="#flow">ご利用の流れ</a>
+      <a href="#info">事業所概要</a>
+    </nav>
+    <a class="tel-btn" href="tel:0487959246">048-795-9246</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">見学・体験 随時受付中</span>
+      <h1>その人らしい一日を、<br>ここから。</h1>
+      <p class="lead">FIORETTO（フィオレット）は、埼玉県春日部市の生活介護事業所です。体調に合わせて「作業」か「プログラム活動」を選べるので、自分のペースで成長していくことができます。</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#contact">見学を申し込む</a>
+        <a class="btn btn-ghost" href="#service">活動内容を見る</a>
+      </div>
+    </div>
+    <div class="hero-visual photo">
+      <img src="fioretto-sign.jpg" alt="FIORETTO 事業所内のサイン">
+      <p>生活介護事業所 FIORETTO｜運営：有限会社キープ</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap facts">
+  <ul>
+    <li><b>サービス</b><span>生活介護</span></li>
+    <li><b>所在地</b><span>春日部市牛島</span></li>
+    <li><b>開所日</b><span>月〜金 9:30〜16:00</span></li>
+    <li><b>送迎</b><span>あり（エリアは要相談）</span></li>
+  </ul>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">01</span>
+      <h2>FIORETTOについて</h2>
+      <p>FIORETTOとは、イタリア語で「小さな花」という意味です。障害を抱えた方も、抱えていない方も、日常生活の中にはたくさんの小さな幸せがあります。「皆様の小さい幸せをたくさん咲かせていきたい」「小さな幸せが集まって大きな幸せを感じてほしい」。その想いを込めて、事業所名をFIORETTOとしました。</p>
+    </div>
+    <div class="about-photo"><img src="fioretto-entrance.jpg" alt="FIORETTO 事業所の入口"></div>
+    <div class="cards">
+      <div class="card"><div class="icon">◎</div><h3>自分のペースで</h3><p>体調に合わせて、作業かプログラム活動かを選ぶことができます。無理にがんばらせることはしません。</p></div>
+      <div class="card"><div class="icon">◎</div><h3>対象の方</h3><p>精神障害・知的障害・発達障害・難病のある方。18歳以上で、生活介護の対象となる方がご利用いただけます。</p></div>
+      <div class="card"><div class="icon">◎</div><h3>ご家族・関係機関と連携</h3><p>相談支援事業所、医療機関、学校・行政と情報を共有し、ご家族と一緒にその人の暮らし全体を支えます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="service">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">02</span>
+      <h2>活動内容とサポート</h2>
+      <p>作業をするか、プログラム活動をするかを選択することができます。月に一度はイベントも企画しています。</p>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>作業｜軽作業</h3><p>簡単な作業を通して、働く喜びと生活リズムをつくります。</p></div>
+      <div class="card"><h3>作業｜創作活動</h3><p>ものづくりやアート。好きなことに没頭できる時間を大切にします。</p></div>
+      <div class="card"><h3>プログラム｜スポーツ・体力作り</h3><p>身体を動かす習慣をつくり、健康と体力を育てます。</p></div>
+      <div class="card"><h3>プログラム｜鑑賞学習</h3><p>映像や音楽の鑑賞、学習プログラム。興味の幅を広げます。</p></div>
+      <div class="card"><h3>看護職員による健康管理</h3><p>看護職員を配置しています。日々の体調確認、服薬の見守り、体調の変化への対応など、安心して通っていただける体制です。</p></div>
+      <div class="card"><h3>送迎サービス</h3><p>ご自宅と事業所の間を送迎します。対応エリアについては、まずはお気軽にお問い合わせください。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="day">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">03</span>
+      <h2>一日の流れ</h2>
+      <p>開所日は月曜日〜金曜日、9:30〜16:00です。</p>
+    </div>
+    <div class="day">
+      <ul class="timeline">
+        <li><time>9:30〜11:30</time><p>作業・プログラム活動</p></li>
+        <li><time>11:30〜12:30</time><p>お昼休憩</p></li>
+        <li><time>12:30〜16:00</time><p>作業・プログラム活動</p></li>
+      </ul>
+      <div class="note"><b>FIORETTOの支援</b><br>体調に合わせて、作業やプログラム活動を選ぶことができるため、自分のペースで成長していくことができます。</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="flow">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">04</span>
+      <h2>ご利用の流れ</h2>
+      <p>はじめての方も、まずはお電話一本からどうぞ。見学だけでも歓迎です。</p>
+    </div>
+    <div class="flow">
+      <div><h3>お問い合わせ</h3><p>お電話でご連絡ください。</p></div>
+      <div><h3>施設見学</h3><p>実際の活動の様子をご覧いただけます。</p></div>
+      <div><h3>障害福祉サービス利用申請</h3><p>お住まいの市区町村で申請を行います。</p></div>
+      <div><h3>受給者証発行</h3><p>市区町村から受給者証が発行されます。</p></div>
+      <div><h3>契約・利用開始</h3><p>個別支援計画を作成し、ご利用スタートです。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="info">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">05</span>
+      <h2>事業所概要</h2>
+    </div>
+    <div class="info">
+      <table>
+        <tr><th>事業所名</th><td>生活介護事業所 FIORETTO（フィオレット）</td></tr>
+        <tr><th>サービス種別</th><td>障害福祉サービス 生活介護</td></tr>
+        <tr><th>所在地</th><td>〒344-0004 埼玉県春日部市牛島125-1</td></tr>
+        <tr><th>電話</th><td><a href="tel:0487959246">048-795-9246</a></td></tr>
+        <tr><th>FAX</th><td>048-795-9247</td></tr>
+        <tr><th>開所日・時間</th><td>月曜日〜金曜日 9:30〜16:00</td></tr>
+        
+        <tr><th>対象</th><td>精神障害・知的障害・発達障害・難病のある方（生活介護の対象となる方）</td></tr>
+        <tr><th>送迎</th><td>あり。対応エリアはお問い合わせください</td></tr>
+        <tr><th>運営法人</th><td>有限会社キープ</td></tr>
+      </table>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12914.500040529218!2d139.76611731426405!3d35.98059232569753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018bc011752d74b%3A0x2683e5d17bdd7c6d!2z44CSMzQ0LTAwMDQg5Z-8546J55yM5pil5pel6YOo5biC54mb5bO277yR77yS77yV4oiS77yR!5e0!3m2!1sja!2sjp!4v1794029990484!5m2!1sja!2sjp" title="FIORETTO 所在地の地図" width="100%" height="100%" style="border:0;position:absolute;inset:0" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <a href="https://www.google.com/maps/search/?api=1&query=%E5%9F%BC%E7%8E%89%E7%9C%8C%E6%98%A5%E6%97%A5%E9%83%A8%E5%B8%82%E7%89%9B%E5%B3%B6125-1" target="_blank" rel="noopener" class="map-link">Googleマップで開く</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>見学・ご相談はお気軽に</h2>
+    <p>上記連絡先にて、ぜひ見学にお越しください。ご本人、ご家族、相談支援専門員の方からのお問い合わせをお待ちしています。</p>
+    <a class="tel" href="tel:0487959246">048-795-9246</a>
+    <small>見学受付募集中｜FAX 048-795-9247</small>
+    <a class="btn btn-ghost" href="https://melth.jp/" target="_blank" rel="noopener">運営グループのサイトを見る</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 有限会社キープ　生活介護事業所 FIORETTO</span>
+    <span>〒344-0004 埼玉県春日部市牛島125-1</span>
+  </div>
+</footer>
+
+</body>
+</html>
