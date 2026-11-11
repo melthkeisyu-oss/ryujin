@@ -26,11 +26,16 @@
   FB_PAGE_ACCESS_TOKEN            Facebookページのアクセストークン（pages_manage_posts 権限）
   FB_PAGE_ID                      Facebookページの ID（省略時はトークンから自動取得）
 
-終了コード: 0=成功 / 2=トークン未設定 / 1=その他の失敗
+終了コード: 0=成功 / 2=トークン未設定 / 3=投稿前チェック不合格(投稿していない) / 1=その他の失敗
+
+post は投稿の前に必ず投稿前チェック(validate_text)を行い、不合格なら1件も投稿しない。
+同じ日に同じ1行目の投稿が既にあれば、その投稿先はスキップする(二重投稿防止)。
+投稿後は公開された本文を読み直し、送った本文と一致するかを照合する(verified)。
 """
 from __future__ import annotations
 
 import argparse
+import datetime
 import json
 import os
 import re
@@ -101,6 +106,93 @@ class ApiError(RuntimeError):
     pass
 
 
+# ---------------------------------------------------------------------------
+# 投稿前チェック（ルール違反が1つでもあれば投稿しない）
+# ---------------------------------------------------------------------------
+EXIT_CHECK_FAILED = 3
+JST = datetime.timezone(datetime.timedelta(hours=9))
+
+_COMMON_BANNED = [
+    ("【タイトル候補】", "下書きの付録（タイトル候補）が混ざっている"),
+    ("【セルフチェック】", "下書きの付録（セルフチェック）が混ざっている"),
+    ("【投稿後", "下書きの付録（投稿後の3アクション）が混ざっている"),
+    ("==========", "下書きの区切り線が混ざっている"),
+    ("google.com/url?q=", "Gmailのリダイレクトリンクが残っている"),
+    ("社会福祉法人", "法人名の誤り（正: NPO法人琉仁福祉会）"),
+    ("自家焙煎", "「自家焙煎」は事実と異なる"),
+]
+RULES = {
+    "personal": {
+        "label": "琉仁福祉会(@keep_largo)",
+        "required": ["#琉仁福祉会"],
+        "banned": [("note.com", "noteへのリンクは書かない"), ("bistargo", "BISTARGOの文が混ざっている"),
+                   ("私は", "法人名義なので個人の一人称は使わない"), ("理事長の私", "法人名義なので個人の一人称は使わない")],
+        "domains": ["npo-largo.com", "ryujin-welfare.org"],
+        "prices": None,
+    },
+    "bistargo": {
+        "label": "BISTARGO(@bistargo.coffee)",
+        "required": ["#BISTARGO", "bistargo.shopselect.net"],
+        "banned": [("焙煎", "「焙煎」の語は使わない"), ("npo-largo.com", "琉仁福祉会のリンクが混ざっている"),
+                   ("#琉仁福祉会", "琉仁福祉会の文が混ざっている")],
+        "domains": ["bistargo.shopselect.net"],
+        "prices": {"1,980円", "198円", "5,400円", "140円"},
+    },
+}
+
+
+def validate_text(text: str, account: str) -> list[str]:
+    """投稿前の機械チェック。問題があれば理由のリストを返す（空なら合格）。"""
+    rule = RULES[account]
+    errors: list[str] = []
+    if len(text.strip()) < 50:
+        errors.append(f"本文が短すぎる（{len(text.strip())}字）。抽出に失敗している可能性")
+    if len(text) > THREADS_MAX_LEN:
+        errors.append(f"Threadsの上限{THREADS_MAX_LEN}字を超えている（{len(text)}字）")
+    for word, why in _COMMON_BANNED + rule["banned"]:
+        if word in text:
+            errors.append(f"「{word}」を含む: {why}")
+    for word in rule["required"]:
+        if word not in text:
+            errors.append(f"「{word}」が無い（{rule['label']}の投稿に必須）")
+    for host in re.findall(r"https?://([^/\s?#]+)", text):
+        if not any(host == d or host.endswith("." + d) for d in rule["domains"]):
+            errors.append(f"想定外のリンク先: {host}（{rule['label']}で使えるのは {', '.join(rule['domains'])}）")
+    if rule["prices"] is not None:
+        for price in re.findall(r"[0-9][0-9,]*円", text):
+            if price not in rule["prices"]:
+                errors.append(f"商品の事実にない金額: {price}")
+    return errors
+
+
+def _first_line(text: str) -> str:
+    return next((ln.strip() for ln in (text or "").splitlines() if ln.strip()), "")
+
+
+def threads_posted_today(token: str, text: str) -> str | None:
+    """同じ1行目の投稿が今日(JST)すでにあれば、そのpermalinkを返す。"""
+    r = requests.get(f"{GRAPH_THREADS}/me/threads",
+                     params={"fields": "timestamp,text,permalink", "limit": 10, "access_token": token}, timeout=30)
+    today = datetime.datetime.now(JST).date()
+    for p in _check(r).get("data", []):
+        ts = datetime.datetime.strptime(p["timestamp"], "%Y-%m-%dT%H:%M:%S%z").astimezone(JST)
+        if ts.date() == today and _first_line(p.get("text")) == _first_line(text):
+            return p.get("permalink") or p.get("id")
+    return None
+
+
+def fb_posted_today(token: str, page_id: str | None, text: str) -> str | None:
+    r = requests.get(f"{GRAPH_FB}/{page_id or 'me'}/posts",
+                     params={"fields": "created_time,message,permalink_url", "limit": 10, "access_token": token},
+                     timeout=30)
+    today = datetime.datetime.now(JST).date()
+    for p in _check(r).get("data", []):
+        ts = datetime.datetime.strptime(p["created_time"], "%Y-%m-%dT%H:%M:%S%z").astimezone(JST)
+        if ts.date() == today and _first_line(p.get("message")) == _first_line(text):
+            return p.get("permalink_url") or p.get("id")
+    return None
+
+
 def _check(resp: requests.Response) -> dict:
     try:
         data = resp.json()
@@ -150,11 +242,17 @@ def threads_post(token: str, text: str, dry_run: bool = False) -> dict:
     media_id = _check(r)["id"]
     p = requests.get(
         f"{GRAPH_THREADS}/{media_id}",
-        params={"fields": "id,permalink", "access_token": token},
+        params={"fields": "id,permalink,text", "access_token": token},
         timeout=30,
     )
     info = _check(p)
-    return {"account": me.get("username"), "id": media_id, "permalink": info.get("permalink")}
+    # 投稿後の照合: 公開された本文が送った本文と一致するか。
+    # Threadsは最初のハッシュタグをトピックに変えて「#」を外すので、「#」と空白の違いは無視する
+    def _norm(s: str) -> str:
+        return re.sub(r"\s+", " ", (s or "").replace("#", "")).strip()
+
+    verified = _norm(info.get("text")) == _norm(text)
+    return {"account": me.get("username"), "id": media_id, "permalink": info.get("permalink"), "verified": verified}
 
 
 def fb_page_info(token: str, page_id: str | None) -> dict:
@@ -173,7 +271,14 @@ def fb_page_post(token: str, page_id: str | None, text: str, dry_run: bool = Fal
         timeout=60,
     )
     post_id = _check(r)["id"]
-    return {"page": page.get("name"), "id": post_id, "permalink": f"https://www.facebook.com/{post_id}"}
+    # 投稿後の照合: 公開された本文が送った本文と一致するか
+    try:
+        g = requests.get(f"{GRAPH_FB}/{post_id}", params={"fields": "message", "access_token": token}, timeout=30)
+        verified = (_check(g).get("message") or "").strip() == text.strip()
+    except ApiError:
+        verified = False
+    return {"page": page.get("name"), "id": post_id, "permalink": f"https://www.facebook.com/{post_id}",
+            "verified": verified}
 
 
 # ---------------------------------------------------------------------------
@@ -224,11 +329,27 @@ def cmd_whoami(_: argparse.Namespace) -> int:
     return 0 if ok else 1
 
 
+def cmd_check(args: argparse.Namespace) -> int:
+    text = _read_text(args)
+    errors = validate_text(text, args.account)
+    print(json.dumps({"account": RULES[args.account]["label"], "chars": len(text),
+                      "first_line": _first_line(text), "check": "OK" if not errors else "NG",
+                      "errors": errors}, ensure_ascii=False, indent=2))
+    return 0 if not errors else EXIT_CHECK_FAILED
+
+
 def cmd_post(args: argparse.Namespace) -> int:
     text = _read_text(args)
     results: dict[str, object] = {}
     missing: list[str] = []
     failed = False
+
+    # 1) 投稿前チェック: 1つでも不合格なら、どこにも投稿しない
+    errors = validate_text(text, args.account)
+    if errors:
+        print(json.dumps({"check": "NG", "posted": False, "errors": errors}, ensure_ascii=False, indent=2))
+        return EXIT_CHECK_FAILED
+    results["check"] = "OK"
 
     if args.threads:
         env = "THREADS_ACCESS_TOKEN_BISTARGO" if args.account == "bistargo" else "THREADS_ACCESS_TOKEN"
@@ -237,7 +358,9 @@ def cmd_post(args: argparse.Namespace) -> int:
             missing.append(env)
         else:
             try:
-                results["threads"] = threads_post(tok, text, dry_run=args.dry_run)
+                dup = None if args.dry_run else threads_posted_today(tok, text)  # 2) 二重投稿の防止
+                results["threads"] = ({"skipped": "本日すでに同じ投稿あり", "permalink": dup} if dup
+                                      else threads_post(tok, text, dry_run=args.dry_run))
             except Exception as e:  # noqa: BLE001
                 failed = True
                 results["threads"] = {"error": str(e)}
@@ -248,10 +371,20 @@ def cmd_post(args: argparse.Namespace) -> int:
             missing.append("FB_PAGE_ACCESS_TOKEN")
         else:
             try:
-                results["facebook"] = fb_page_post(tok, os.environ.get("FB_PAGE_ID"), text, dry_run=args.dry_run)
+                page_id = os.environ.get("FB_PAGE_ID")
+                dup = None if args.dry_run else fb_posted_today(tok, page_id, text)
+                results["facebook"] = ({"skipped": "本日すでに同じ投稿あり", "permalink": dup} if dup
+                                       else fb_page_post(tok, page_id, text, dry_run=args.dry_run))
             except Exception as e:  # noqa: BLE001
                 failed = True
                 results["facebook"] = {"error": str(e)}
+
+    # 3) 投稿後の照合で一致しなかったものは失敗扱い
+    for key in ("threads", "facebook"):
+        r = results.get(key)
+        if isinstance(r, dict) and r.get("verified") is False:
+            failed = True
+            r["error"] = "投稿後の照合で、公開された本文が送った本文と一致しない"
 
     if missing:
         results["missing_env"] = missing
@@ -282,6 +415,11 @@ def main(argv: list[str] | None = None) -> int:
     sp.add_argument("--account", choices=["personal", "bistargo"], default="personal", help="Threads のアカウント")
     sp.add_argument("--dry-run", action="store_true", help="投稿せず内容だけ表示")
     sp.set_defaults(func=cmd_post)
+
+    sp = sub.add_parser("check", help="投稿前チェックだけ行う(投稿しない)")
+    add_input(sp)
+    sp.add_argument("--account", choices=["personal", "bistargo"], default="personal", help="どのアカウントのルールで確認するか")
+    sp.set_defaults(func=cmd_check)
 
     sp = sub.add_parser("whoami", help="トークンの確認")
     sp.set_defaults(func=cmd_whoami)
