@@ -56,7 +56,8 @@ _RULE_CHARS = "=＝\\-－_─━"
 _SECTION_HEAD = re.compile(r"^[" + _RULE_CHARS + r"\s]*【?Threads投稿[^】\n" + _RULE_CHARS + r"]*】?[" + _RULE_CHARS + r"\s]*$")
 # セクションの終わり: 罫線だけの行 / 【…】見出し / ==== 見出し ==== 形式の行
 _RULE = re.compile(r"^[" + _RULE_CHARS + r"]{5,}\s*$")
-_ANY_HEAD = re.compile(r"^[" + _RULE_CHARS + r"\s]*【[^】]+】[" + _RULE_CHARS + r"\s]*$")
+# 【タイトル候補】(不採用の2つ) のように見出しの後ろに注記が続く行も区切りとして扱う
+_ANY_HEAD = re.compile(r"^[" + _RULE_CHARS + r"\s]*【[^】]+】\s*(?:[(（][^)）]*[)）])?[" + _RULE_CHARS + r"\s]*$")
 _WRAPPED_HEAD = re.compile(r"^[" + _RULE_CHARS + r"]{3,}\s*\S.*?\s*[" + _RULE_CHARS + r"]{3,}\s*$")
 
 
