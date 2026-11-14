@@ -1,0 +1,54 @@
+{
+  "base": "R8/02_kousoku",
+  "review_note": "暫定版（{{checked}}時点）。令和9年度報酬改定の告示（2027年3月ごろ）と、令和7年度の虐待対応状況調査（2026年12月公表予定）が出たら、改定スライドと数字を確定版に差し替えてから配信すること。",
+  "sources": [
+    {
+      "name": "大阪府「令和6年度障害福祉サービス等報酬改定（身体拘束廃止未実施減算）」",
+      "url": "https://www.pref.osaka.lg.jp/documents/63665/d-04.pdf"
+    },
+    {
+      "name": "福岡市「障害福祉サービス等報酬改定Q&A」",
+      "url": "https://www.city.fukuoka.lg.jp/fukushi/shisetsushien/health/syougaijiritusienhou/documents/01reiwa3nenndohousyuukaiteiQA.pdf"
+    },
+    {
+      "name": "厚生労働省「障害者虐待防止法」",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/shougaishahukushi/gyakutaiboushi/index.html"
+    },
+    {
+      "name": "厚生労働省「障害福祉サービス等報酬改定検討チーム」",
+      "url": "https://www.mhlw.go.jp/stf/newpage_75819.html"
+    },
+    {
+      "name": "厚生労働省「令和9年度障害福祉報酬改定の議論の状況について」",
+      "url": "https://www.mhlw.go.jp/content/12201000/001750492.pdf"
+    },
+    {
+      "name": "社会保険研究所「虐待防止・BCP・カスハラ対策で運営基準見直しへ（第274回介護給付費分科会 2026年11月6日）」",
+      "url": "https://media.shaho.co.jp/n/n1c51af4ab572?gs=708e83049d84bf8d78d17ed82bf1b6d8"
+    }
+  ],
+  "slide_ops": [
+    {
+      "op": "insert_after",
+      "heading": "身体拘束をしないための工夫",
+      "slides": [
+        {
+          "heading": "令和9年度に向けた動き",
+          "bullets": [
+            "障害福祉では、令和6年度から訪問・通所系も減算の対象",
+            "介護保険の分野でも、通所系への適正化の取り組みの導入が議論されている（2026年11月）",
+            "!国は、適正化の取り組みを「着実に実施」させる方向",
+            "委員会・指針・研修・記録を、確実に続けることが大切"
+          ],
+          "say": [
+            "令和9年度に向けた動きも確認しておきます。",
+            "障害福祉の分野では、令和6年度の改定で、訪問系や通所系のサービスも、身体拘束廃止未実施減算の対象になっています。",
+            "介護保険の分野でも、2026年11月の審議会で、通所系のサービスに、身体拘束の適正化の取り組みを広げることが議論されました。",
+            "国は全体として、身体拘束の適正化や虐待防止の取り組みを、各事業所に着実に実施させる方向で検討を進めています。",
+            "委員会、指針、研修、そして記録を、確実に続けていくことが、これまで以上に大切になります。"
+          ]
+        }
+      ]
+    }
+  ]
+}

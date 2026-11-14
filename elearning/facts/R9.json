@@ -1,0 +1,13 @@
+{
+  "year_label": "令和9年度",
+  "fiscal_year": "2027年4月〜2028年3月",
+  "report_to": "",
+  "abuse_stat_year": "令和6年度",
+  "abuse_stat_published": "令和7年12月",
+  "abuse_reports": "5,870件",
+  "abuse_confirmed": "1,267件",
+  "abuse_victims": "2,010人",
+  "abuse_reporter_staff": "20.5%",
+  "checked": "2026年11月14日",
+  "_todo": "令和7年度の調査結果（2026年12月公表予定）が出たら abuse_* を差し替える。令和9年度報酬改定の告示（2027年3月頃）が出たら content/R9 の改定スライドを確定版に書き換える。"
+}

@@ -1,0 +1,83 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>令和8年度 法定研修</title>
+<style>
+:root{--ink:#1e2228;--muted:#6e7680;--navy:#1f3a5f;--accent:#e68c3c;--bg:#fafaf7;--card:#fff;--line:#dde1e6}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e8e3;--muted:#9aa2aa;--navy:#8fb3e0;--bg:#16191d;--card:#1f2328;--line:#343a40}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Hiragino Sans","Yu Gothic",sans-serif;padding:24px 16px 64px}
+main{max-width:860px;margin:0 auto}h1{font-size:26px;margin:0 0 4px}header p{color:var(--muted);margin:0 0 20px}
+.who{background:var(--card);border:1px solid var(--line);padding:14px;border-radius:10px;margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.who input{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);min-width:12em}
+.mod{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--accent);border-radius:10px;padding:16px;margin-bottom:20px}
+.mod h2{margin:0 0 10px;font-size:20px;color:var(--navy)}.mod h2 small{font-size:13px;color:var(--muted);margin-left:8px}
+video{width:100%;border-radius:8px;background:#000;aspect-ratio:16/9}
+details{margin-top:10px}summary{cursor:pointer;font-weight:700}
+fieldset{border:1px solid var(--line);border-radius:8px;margin:10px 0;padding:10px}legend{font-weight:700;padding:0 4px}
+label{display:block;padding:4px 0}.ex{color:var(--muted);font-size:14px;margin:6px 0 0}
+button{font:inherit;padding:8px 18px;border:0;border-radius:6px;background:var(--navy);color:#fff;cursor:pointer}
+.ok{color:#2f8f5b;font-weight:700}.ng{color:#c23b3b;font-weight:700}.note{color:var(--muted);font-size:13px}
+.log{margin-top:24px}.log button{margin-right:8px}
+</style></head><body><main>
+<header><h1>令和8年度 法定研修（eラーニング）</h1>
+<p>動画を見て、確認テストに答えてください。8割以上で修了です。修了したら、最後に受講記録を送ってください。</p></header>
+<div class="who">氏名 <input id="name" placeholder="例：山田 花子"> 事業所 <input id="office" placeholder="例：越谷事業所"></div>
+
+<section class="mod" id="m-01_gyakutai" data-title="障害者虐待防止研修">
+  <h2>障害者虐待防止研修<small>約9分</small></h2>
+  <video controls preload="none" poster="01_gyakutai_thumb.jpg" src="01_gyakutai.mp4"></video>
+  <details><summary>確認テスト（5問・8割以上で修了）</summary>
+    <form><fieldset data-answer="1" data-explain="身体的虐待・性的虐待・心理的虐待・放棄放置・経済的虐待の5つです。"><legend>問1　障害者虐待防止法で定められている虐待の種類はいくつですか。</legend><label><input type="radio" name="q0" value="0"> 3つ</label><label><input type="radio" name="q0" value="1"> 5つ</label><label><input type="radio" name="q0" value="2"> 7つ</label><p class="ex"></p></fieldset><fieldset data-answer="1" data-explain="どなる・ばかにする・無視する・子ども扱いするといった行為は、心理的虐待にあたるおそれがあります。"><legend>問2　利用者を大きな声でどなったり、子ども扱いしたりすることは、どの虐待にあたるおそれがありますか。</legend><label><input type="radio" name="q1" value="0"> 経済的虐待</label><label><input type="radio" name="q1" value="1"> 心理的虐待</label><label><input type="radio" name="q1" value="2"> 放棄・放置</label><p class="ex"></p></fieldset><fieldset data-answer="1" data-explain="確信がなくても、思われる段階で速やかに市町村へ通報する義務があります。通報は守秘義務より優先されます。"><legend>問3　虐待を受けたと思われる利用者を見つけたとき、正しい対応はどれですか。</legend><label><input type="radio" name="q2" value="0"> 確信が持てるまで様子を見る</label><label><input type="radio" name="q2" value="1"> 速やかに市町村に通報する</label><label><input type="radio" name="q2" value="2"> 守秘義務があるので誰にも話さない</label><p class="ex"></p></fieldset><fieldset data-answer="0" data-explain="虐待防止委員会は年1回以上開き、その結果を職員に知らせる必要があります。"><legend>問4　事業所が行う虐待防止委員会は、少なくともどのくらいの頻度で開く必要がありますか。</legend><label><input type="radio" name="q3" value="0"> 年1回以上</label><label><input type="radio" name="q3" value="1"> 3年に1回</label><label><input type="radio" name="q3" value="2"> 必要なときだけ</label><p class="ex"></p></fieldset><fieldset data-answer="1" data-explain="令和6年4月から、虐待防止措置未実施減算として基本報酬の1%が減算されます。"><legend>問5　虐待防止の措置（委員会・研修・担当者）のうち1つでも欠けた場合、どうなりますか。</legend><label><input type="radio" name="q4" value="0"> 特に何もない</label><label><input type="radio" name="q4" value="1"> 基本報酬が1%減算される</label><label><input type="radio" name="q4" value="2"> 事業所の指定がすぐ取り消される</label><p class="ex"></p></fieldset><button type="button" class="grade">採点する</button><p class="result"></p></form>
+  </details>
+  <details><summary>この研修の根拠（最終確認日 2026年11月14日）</summary><ul><li><a href="https://www.mhlw.go.jp/content/12203000/001619246.pdf" target="_blank" rel="noopener">厚生労働省「令和6年度 障害者虐待事例への対応状況等（調査結果）」（令和7年12月公表）</a></li><li><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/shougaishahukushi/gyakutaiboushi/index.html" target="_blank" rel="noopener">厚生労働省「障害者虐待防止法」</a></li><li><a href="https://www.pref.okinawa.jp/kyoiku/shogaifukushi/1007022/1018749/1030061.html" target="_blank" rel="noopener">沖縄県「虐待防止措置未実施減算」</a></li><li><a href="https://www.pref.shimane.lg.jp/medical/fukushi/syougai/jigyousya/syougaiservice/gyakutaibousisoti_mijisshigensan.html" target="_blank" rel="noopener">島根県「虐待防止措置未実施減算」</a></li></ul>
+  <p class="note">数字・基準は2026年11月14日時点の公表資料にもとづく。事業所ごとの虐待防止責任者・相談窓口の欄は、配信前に各事業所で記入すること。</p></details>
+</section>
+<section class="mod" id="m-02_kousoku" data-title="身体拘束等の適正化研修">
+  <h2>身体拘束等の適正化研修<small>約9分</small></h2>
+  <video controls preload="none" poster="02_kousoku_thumb.jpg" src="02_kousoku.mp4"></video>
+  <details><summary>確認テスト（5問・8割以上で修了）</summary>
+    <form><fieldset data-answer="0" data-explain="本人が自分の意思で動けないようにすることは、身体拘束にあたります。"><legend>問1　次のうち、身体拘束にあたるものはどれですか。</legend><label><input type="radio" name="q0" value="0"> 車いすにベルトで固定し、自分で外せないようにする</label><label><input type="radio" name="q0" value="1"> 本人の希望で、一緒に散歩する</label><label><input type="radio" name="q0" value="2"> 食事の前に手洗いを声かけする</label><p class="ex"></p></fieldset><fieldset data-answer="0" data-explain="切迫性・非代替性・一時性の3つを、すべて満たす必要があります。"><legend>問2　やむを得ず身体拘束を行う場合に、すべて満たす必要がある3つの要件の組み合わせはどれですか。</legend><label><input type="radio" name="q1" value="0"> 切迫性・非代替性・一時性</label><label><input type="radio" name="q1" value="1"> 安全性・効率性・継続性</label><label><input type="radio" name="q1" value="2"> 必要性・計画性・公平性</label><p class="ex"></p></fieldset><fieldset data-answer="1" data-explain="行った内容、時間、本人の心身の状況、やむを得なかった理由を記録に残す必要があります。"><legend>問3　やむを得ず身体拘束を行ったときに、必ずしなければならないことはどれですか。</legend><label><input type="radio" name="q2" value="0"> 口頭で同僚に伝えるだけでよい</label><label><input type="radio" name="q2" value="1"> 内容・時間・本人の様子・理由を記録する</label><label><input type="radio" name="q2" value="2"> 家族には知らせない</label><p class="ex"></p></fieldset><fieldset data-answer="0" data-explain="訪問・通所系は1%、施設・居住系は10%です。"><legend>問4　令和6年4月からの身体拘束廃止未実施減算で、生活介護など訪問・通所系サービスの減算割合はどれですか。</legend><label><input type="radio" name="q3" value="0"> 基本報酬の1%</label><label><input type="radio" name="q3" value="1"> 基本報酬の10%</label><label><input type="radio" name="q3" value="2"> 減算はない</label><p class="ex"></p></fieldset><fieldset data-answer="1" data-explain="行動には理由があります。痛みや不安、環境などの理由を考え、支援の方法を変えていきます。"><legend>問5　身体拘束をしないための工夫として、最初に行うとよいことはどれですか。</legend><label><input type="radio" name="q4" value="0"> すぐに道具で動きを止める</label><label><input type="radio" name="q4" value="1"> その行動の理由を考える</label><label><input type="radio" name="q4" value="2"> 見ないようにする</label><p class="ex"></p></fieldset><button type="button" class="grade">採点する</button><p class="result"></p></form>
+  </details>
+  <details><summary>この研修の根拠（最終確認日 2026年11月14日）</summary><ul><li><a href="https://www.pref.osaka.lg.jp/documents/63665/d-04.pdf" target="_blank" rel="noopener">大阪府「令和6年度障害福祉サービス等報酬改定（身体拘束廃止未実施減算）」</a></li><li><a href="https://www.city.fukuoka.lg.jp/fukushi/shisetsushien/health/syougaijiritusienhou/documents/01reiwa3nenndohousyuukaiteiQA.pdf" target="_blank" rel="noopener">福岡市「障害福祉サービス等報酬改定Q&amp;A」</a></li><li><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/shougaishahukushi/gyakutaiboushi/index.html" target="_blank" rel="noopener">厚生労働省「障害者虐待防止法」</a></li></ul>
+  <p class="note">減算の割合（施設・居住系10%、訪問・通所系1%）は令和6年度報酬改定による。委員会の開催頻度は事業所の種別ごとに指定権者の資料で確認すること。</p></details>
+</section>
+<section class="mod" id="m-03_kansen" data-title="感染症の予防とまん延防止研修">
+  <h2>感染症の予防とまん延防止研修<small>約8分</small></h2>
+  <video controls preload="none" poster="03_kansen_thumb.jpg" src="03_kansen.mp4"></video>
+  <details><summary>確認テスト（5問・8割以上で修了）</summary>
+    <form><fieldset data-answer="0" data-explain="おおむね6か月に1回以上開き、結果を職員に知らせます。"><legend>問1　感染対策委員会は、どのくらいの頻度で開く必要がありますか。</legend><label><input type="radio" name="q0" value="0"> おおむね6か月に1回以上</label><label><input type="radio" name="q0" value="1"> 3年に1回</label><label><input type="radio" name="q0" value="2"> 感染症が出たときだけ</label><p class="ex"></p></fieldset><fieldset data-answer="1" data-explain="すべての人の血液・体液・排せつ物・おう吐物を、感染の可能性があるものとして扱います。"><legend>問2　「標準予防策」の考え方として正しいものはどれですか。</legend><label><input type="radio" name="q1" value="0"> 症状のある人の体液だけ注意する</label><label><input type="radio" name="q1" value="1"> すべての人の体液などを、感染の可能性があるものとして扱う</label><label><input type="radio" name="q1" value="2"> 健康な人には対策はいらない</label><p class="ex"></p></fieldset><fieldset data-answer="1" data-explain="ノロウイルスにはアルコールが効きにくいため、次亜塩素酸ナトリウムで消毒します。"><legend>問3　ノロウイルスが疑われるおう吐物を処理したあとの消毒に、適しているものはどれですか。</legend><label><input type="radio" name="q2" value="0"> アルコール</label><label><input type="radio" name="q2" value="1"> 次亜塩素酸ナトリウム</label><label><input type="radio" name="q2" value="2"> 水ぶきだけ</label><p class="ex"></p></fieldset><fieldset data-answer="1" data-explain="症状があるときは無理に出勤せず、出勤前に必ず連絡します。"><legend>問4　職員が出勤前に熱や下痢の症状に気づいたとき、正しい対応はどれですか。</legend><label><input type="radio" name="q3" value="0"> 出勤してから様子を見る</label><label><input type="radio" name="q3" value="1"> 出勤前に事業所に連絡する</label><label><input type="radio" name="q3" value="2"> 誰にも言わずに休む</label><p class="ex"></p></fieldset><fieldset data-answer="0" data-explain="同じ感染症の人が10人以上または利用者の半数以上のとき、死亡者や重症者が1週間に2人以上のときなどに報告します。"><legend>問5　市町村と保健所に報告が必要になるのは、どんなときですか。</legend><label><input type="radio" name="q4" value="0"> 同じ感染症の人が10人以上、または利用者の半数以上になったとき</label><label><input type="radio" name="q4" value="1"> 職員が1人かぜをひいたとき</label><label><input type="radio" name="q4" value="2"> 報告は必要ない</label><p class="ex"></p></fieldset><button type="button" class="grade">採点する</button><p class="result"></p></form>
+  </details>
+  <details><summary>この研修の根拠（最終確認日 2026年11月14日）</summary><ul><li><a href="https://www.pref.kagoshima.jp/ae07/kenko-fukushi/syogai-syakai/ziritushien/jigyousyo/documents/112232_20240328183124-1.pdf" target="_blank" rel="noopener">鹿児島県「障害福祉サービス等報酬改定・運営基準（感染症対策の強化）」</a></li><li><a href="https://www.pref.gunma.jp/uploaded/attachment/664307.pdf" target="_blank" rel="noopener">群馬県「感染症の予防及びまん延の防止のための措置」</a></li><li><a href="https://www.fukushi.metro.tokyo.lg.jp/shougai/jigyo/kansensho-movie" target="_blank" rel="noopener">東京都福祉局「障害福祉サービス事業所向け 感染症対策研修動画」</a></li></ul>
+  <p class="note">委員会はおおむね6か月に1回以上、研修・訓練は年1回以上（令和6年4月から全サービスで義務）。保健所等への報告基準は厚生労働省通知「社会福祉施設等における感染症等発生時に係る報告について」による。訓練の実施記録とあわせて保存すること。</p></details>
+</section>
+<section class="mod" id="m-04_bcp" data-title="業務継続計画（BCP）研修">
+  <h2>業務継続計画（BCP）研修<small>約8分</small></h2>
+  <video controls preload="none" poster="04_bcp_thumb.jpg" src="04_bcp.mp4"></video>
+  <details><summary>確認テスト（5問・8割以上で修了）</summary>
+    <form><fieldset data-answer="0" data-explain="自然災害のBCPと、感染症のBCPの2つを作ります。"><legend>問1　障害福祉の事業所が作る業務継続計画（BCP）は、どの2つですか。</legend><label><input type="radio" name="q0" value="0"> 自然災害と感染症</label><label><input type="radio" name="q0" value="1"> 火災と盗難</label><label><input type="radio" name="q0" value="2"> 人事と経理</label><p class="ex"></p></fieldset><fieldset data-answer="0" data-explain="研修・訓練は年1回以上行い、結果を計画の見直しに生かします。"><legend>問2　BCPにもとづく研修と訓練は、どのくらいの頻度で行う必要がありますか。</legend><label><input type="radio" name="q1" value="0"> 年1回以上</label><label><input type="radio" name="q1" value="1"> 5年に1回</label><label><input type="radio" name="q1" value="2"> 災害が起きたときだけ</label><p class="ex"></p></fieldset><fieldset data-answer="1" data-explain="水・食料・薬などは、少なくとも3日分を備蓄しておきます。"><legend>問3　災害に備えた水や食料の備蓄の目安はどれですか。</legend><label><input type="radio" name="q2" value="0"> 半日分</label><label><input type="radio" name="q2" value="1"> 少なくとも3日分</label><label><input type="radio" name="q2" value="2"> 必要ない</label><p class="ex"></p></fieldset><fieldset data-answer="1" data-explain="まず安全な場所に停車し、利用者の安全を確認してから、事業所に連絡します。"><legend>問4　送迎中に大きな地震が起きたとき、最初にすることはどれですか。</legend><label><input type="radio" name="q3" value="0"> 急いで事業所まで走り続ける</label><label><input type="radio" name="q3" value="1"> 安全な場所に停車し、利用者の安全を確認する</label><label><input type="radio" name="q3" value="2"> 利用者を車に残して様子を見に行く</label><p class="ex"></p></fieldset><fieldset data-answer="0" data-explain="令和7年4月からは経過措置が終わり、業務継続計画未策定減算が適用されています。"><legend>問5　業務継続計画を作っていない事業所はどうなりますか。</legend><label><input type="radio" name="q4" value="0"> 業務継続計画未策定減算がかかる</label><label><input type="radio" name="q4" value="1"> 何も変わらない</label><label><input type="radio" name="q4" value="2"> 報酬が増える</label><p class="ex"></p></fieldset><button type="button" class="grade">採点する</button><p class="result"></p></form>
+  </details>
+  <details><summary>この研修の根拠（最終確認日 2026年11月14日）</summary><ul><li><a href="https://www.city.iwaki.lg.jp/www/contents/1711333666457/simple/syo_syogaihukushika_pt.pdf" target="_blank" rel="noopener">いわき市「障害福祉サービス事業者 集団指導資料（業務継続計画未策定減算の経過措置）」</a></li><li><a href="https://www.pref.okinawa.jp/kyoiku/kaigofukushi/1007256/1018690/1033305.html" target="_blank" rel="noopener">沖縄県「令和6年度報酬改定 経過措置の終了について」</a></li><li><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/shougaishahukushi/index.html" target="_blank" rel="noopener">厚生労働省「障害福祉サービス事業所等における業務継続ガイドライン」</a></li></ul>
+  <p class="note">要確認：業務継続計画未策定減算の割合（施設・居住系3%、その他1%）と、研修・訓練の頻度（年1回以上）は、配信前に指定権者（埼玉県・沖縄県など）の集団指導資料で確認すること。事業所ごとの連絡網・避難場所・備蓄の内容は各事業所で記入すること。</p></details>
+</section>
+<section class="log"><h2>受講記録</h2><p id="summary">まだ修了した研修はありません。</p>
+<button id="csv">記録をダウンロード（CSV）</button><button id="mail">管理者にメールで送る</button></section>
+</main><script>
+const done={};
+function save(){try{localStorage.setItem('elearn-令和8年度',JSON.stringify(done))}catch(e){}}
+try{Object.assign(done,JSON.parse(localStorage.getItem('elearn-令和8年度')||'{}'))}catch(e){}
+function who(){return [document.getElementById('name').value.trim(),document.getElementById('office').value.trim()]}
+function refresh(){const k=Object.keys(done);document.getElementById('summary').textContent=k.length?k.map(t=>t+'（'+done[t].score+'・'+done[t].date+'）').join('／'):'まだ修了した研修はありません。'}
+document.querySelectorAll('.grade').forEach(b=>b.onclick=()=>{
+ const sec=b.closest('.mod'),fs=sec.querySelectorAll('fieldset');let ok=0,ans=0;
+ fs.forEach(f=>{const c=f.querySelector('input:checked');const ex=f.querySelector('.ex');
+  if(c){ans++;if(c.value===f.dataset.answer){ok++;ex.innerHTML='<span class="ok">正解</span> '+f.dataset.explain}else{ex.innerHTML='<span class="ng">不正解</span> '+f.dataset.explain}}else{ex.textContent='未回答です'}});
+ const r=sec.querySelector('.result');if(ans<fs.length){r.textContent='すべての問題に答えてください。';return}
+ const pass=ok/fs.length>=0.8;r.innerHTML=pass?'<span class="ok">修了です（'+ok+'/'+fs.length+'問正解）</span>':'<span class="ng">'+ok+'/'+fs.length+'問正解。動画を見直して、もう一度答えてください。</span>';
+ if(pass){done[sec.dataset.title]={score:ok+'/'+fs.length,date:new Date().toLocaleDateString('ja-JP')};save();refresh()}});
+function rows(){const [n,o]=who();return Object.keys(done).map(t=>[n,o,t,done[t].score,done[t].date])}
+document.getElementById('csv').onclick=()=>{const [n]=who();if(!n){alert('氏名を入力してください');return}
+ const csv='\ufeff氏名,事業所,研修,得点,修了日\n'+rows().map(r=>r.join(',')).join('\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='受講記録_'+n+'.csv';a.click()};
+document.getElementById('mail').onclick=()=>{const [n]=who();if(!n){alert('氏名を入力してください');return}
+ const body=rows().map(r=>r.join('　')).join('\n');location.href='mailto:?subject='+encodeURIComponent('【受講記録】令和8年度 法定研修 '+n)+'&body='+encodeURIComponent(body)};
+refresh();
+</script></body></html>

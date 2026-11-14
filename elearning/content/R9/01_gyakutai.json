@@ -1,0 +1,54 @@
+{
+  "base": "R8/01_gyakutai",
+  "review_note": "暫定版（{{checked}}時点）。令和9年度報酬改定の告示（2027年3月ごろ）と、令和7年度の虐待対応状況調査（2026年12月公表予定）が出たら、改定スライドと数字を確定版に差し替えてから配信すること。",
+  "sources": [
+    {
+      "name": "厚生労働省「{{abuse_stat_year}} 障害者虐待事例への対応状況等（調査結果）」（{{abuse_stat_published}}公表）",
+      "url": "https://www.mhlw.go.jp/content/12203000/001619246.pdf"
+    },
+    {
+      "name": "厚生労働省「障害者虐待防止法」",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/shougaishahukushi/gyakutaiboushi/index.html"
+    },
+    {
+      "name": "沖縄県「虐待防止措置未実施減算」",
+      "url": "https://www.pref.okinawa.jp/kyoiku/shogaifukushi/1007022/1018749/1030061.html"
+    },
+    {
+      "name": "島根県「虐待防止措置未実施減算」",
+      "url": "https://www.pref.shimane.lg.jp/medical/fukushi/syougai/jigyousya/syougaiservice/gyakutaibousisoti_mijisshigensan.html"
+    },
+    {
+      "name": "厚生労働省「障害福祉サービス等報酬改定検討チーム」",
+      "url": "https://www.mhlw.go.jp/stf/newpage_75819.html"
+    },
+    {
+      "name": "厚生労働省「令和9年度障害福祉報酬改定の議論の状況について」",
+      "url": "https://www.mhlw.go.jp/content/12201000/001750492.pdf"
+    }
+  ],
+  "slide_ops": [
+    {
+      "op": "insert_after",
+      "heading": "事業所が必ず行うこと（運営基準）",
+      "slides": [
+        {
+          "heading": "令和9年度の報酬改定と虐待防止",
+          "bullets": [
+            "2026年8月の検討チームで、令和9年度改定の主な論点が示された",
+            "虐待防止措置・情報公表・BCPを「着実に実施」するための見直しを検討",
+            "!具体的な基準や減算の変更は、2027年2〜3月ごろに決まり、4月から適用の予定",
+            "職員を守るカスタマーハラスメント対策も検討されている"
+          ],
+          "say": [
+            "ここで、令和9年度の報酬改定の動きを確認しておきます。",
+            "障害福祉の報酬は、3年に1度見直されます。2026年の8月に開かれた国の検討チームで、令和9年度の改定に向けた主な論点が示されました。",
+            "その中で、虐待防止の措置や、事業所の情報公表、業務継続計画を、各事業所が着実に実施できるようにするための見直しが、検討されています。",
+            "あわせて、利用者や家族などからの、職員へのカスタマーハラスメントへの対策も、検討の対象になっています。",
+            "具体的な基準や減算がどう変わるのかは、2027年の2月から3月ごろに決まり、4月から適用される予定です。決まりしだい、この研修の内容も更新します。"
+          ]
+        }
+      ]
+    }
+  ]
+}
