@@ -4,7 +4,7 @@
 
 ## 始めるとき（引き継ぎ）
 
-言われなくても前の会話（携帯・パソコンのチャット、Code）を引き継ぐ。仕事の話なら、答える前に `melthkeisyu-oss/obsidian-claude` を clone し、`mirror/Claude/作業ログ/` の今月分の最新と、`mirror/Claude/会話ログ/` の関係しそうな新しいものを読む（必要なら `mirror/Claude/引き継ぎメモ.md`）。定時の自動実行や関係ない作業では読まない。
+言われなくても前の会話（携帯・パソコンのチャット、Code）を引き継ぐ。仕事の話なら、答える前に `melthkeisyu-oss/obsidian-claude` を clone し、まず `mirror/Claude/現況.md`（同期ごとに更新される要約）を読む。足りなければ `mirror/Claude/作業ログ/` の今月分の最新と、`mirror/Claude/会話ログ/` の関係しそうな新しいものを読む（必要なら `mirror/Claude/引き継ぎメモ.md`）。定時の自動実行や関係ない作業では読まない。
 
 ## Obsidianへの記録（必須）
 
